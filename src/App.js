@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import Overview from "./Components/Overview";
-import './Styles/Components.css'
+import "./Styles/Components.css";
 
 class App extends Component {
   constructor() {
@@ -39,7 +39,6 @@ class App extends Component {
       },
     });
   };
-  
 
   deleteTask = (taskId) => {
     this.setState({
@@ -60,13 +59,10 @@ class App extends Component {
             value={task.text}
             onChange={this.handleChange}
           />
-  <hr/>
+          <hr />
           <button>Add Task</button>
         </form>
-        <Overview 
-          tasks={tasks}
-          deleteTask={this.deleteTask}
-           />
+        <Overview tasks={tasks} deleteTask={this.deleteTask} />
       </div>
     );
   }

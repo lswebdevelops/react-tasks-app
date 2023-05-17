@@ -27,21 +27,34 @@ class App extends Component {
 
   onSubmitTask = (e) => {
     e.preventDefault();
+    const newTask = {
+      text: this.state.task.text,
+      id: uniqid(),
+    };
     this.setState({
-      tasks: this.state.tasks.concat(this.state.task),
-      task: { 
-        text: "" },
+      tasks: this.state.tasks.concat(newTask),
+      task: {
+        text: "",
         id: uniqid(),
+      },
+    });
+  };
+  
+
+  deleteTask = (taskId) => {
+    this.setState({
+      tasks: this.state.tasks.filter((task) => task.id !== taskId),
     });
   };
   render() {
     const { task, tasks } = this.state;
 
     return (
-      <div>
+      <div className="container">
         <form onSubmit={this.onSubmitTask}>
           <label htmlFor="taskInput">Enter task</label>
           <input
+            maxLength={35}
             type="text"
             id="taskInput"
             value={task.text}
@@ -50,7 +63,10 @@ class App extends Component {
 
           <button>Add Task</button>
         </form>
-        <Overview tasks={tasks} />
+        <Overview 
+          tasks={tasks}
+          deleteTask={this.deleteTask}
+           />
       </div>
     );
   }

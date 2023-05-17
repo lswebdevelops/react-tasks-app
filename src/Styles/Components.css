@@ -2,6 +2,7 @@
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
+    background-color: white;
   }
   
   form {
@@ -39,3 +40,24 @@
     margin-bottom: 10px;
   }
   
+  .delete{
+    border: none;
+    width: auto;
+    color: gray;
+    background-color: white;
+    ;
+  }
+  .delete:hover{
+    color: red;
+    background-color: white;
+    font-size: large;
+  }
+  .task-container{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+  }
+  li::marker{
+    text-decoration: double;
+  }

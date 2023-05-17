@@ -27,6 +27,10 @@ class App extends Component {
 
   onSubmitTask = (e) => {
     e.preventDefault();
+     // Check if task.text is empty
+  if (this.state.task.text.trim() === "") {
+    return; // Exit the function if the text is empty
+  }
     const newTask = {
       text: this.state.task.text,
       id: uniqid(),

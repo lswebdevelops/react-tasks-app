@@ -1,7 +1,8 @@
 .container {
   max-width: 500px;
   margin: 0 auto;
-  padding: 20px;
+  padding-top: 20px;
+
   background-color: white;
 }
 
@@ -15,7 +16,7 @@ label {
 }
 
 input[type="text"] {
-  width: 100%;
+  width: 96%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -40,26 +41,35 @@ button:hover {
   margin-bottom: 10px;
 }
 
-.delete {
+.delete-button {
   border: none;
-  width: auto;
+  width: 50px;
   color: gray;
   background-color: white;
+  margin-right: -25px;
 }
-.delete:hover {
+.delete-button:hover {
   color: red;
   background-color: white;
-  font-size: large;
+  font-size: larger;
+  font-weight: 700;
 }
 .task-container {
   display: flex;
   justify-content: left;
   align-items: center;
-  gap: 10px;
 }
-li::marker {
-  text-decoration: double;
-}
+
 hr {
   border: none;
+}
+
+.li-task-container{
+  width: 450px;
+  overflow: hidden;
+  margin-left: -40px;
+
+}
+ul{
+  margin:0;
 }

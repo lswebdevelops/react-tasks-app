@@ -9,10 +9,10 @@ const Overview = (props) => {
       {tasks.map((task) => {
         return (
           <div className="task-container" key={task.id}>
-            <button className="delete" onClick={() => deleteTask(task.id)}>
+            <li className="li-task-container">{task.text}</li>
+            <button className="delete-button" onClick={() => deleteTask(task.id)}>
               x
             </button>
-            <li>{task.text}</li>
           </div>
         );
       })}

@@ -60,7 +60,7 @@ class App extends Component {
             value={task.text}
             onChange={this.handleChange}
           />
-
+  <hr/>
           <button>Add Task</button>
         </form>
         <Overview 

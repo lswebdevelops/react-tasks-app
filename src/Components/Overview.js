@@ -13,7 +13,7 @@ const Overview = (props) => {
                 className="delete"
                 onClick={() => deleteTask(task.id)}
                 >x</button>
-            <li key={task.id}>{task.text}</li>
+            <li >{task.text}</li>
           </div>
         );
       })}

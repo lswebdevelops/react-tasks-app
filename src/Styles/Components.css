@@ -1,5 +1,5 @@
 .container {
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
   padding-top: 20px;
 
@@ -46,7 +46,7 @@ button:hover {
   width: 50px;
   color: gray;
   background-color: white;
-  margin-right: -25px;
+  margin-right: 0px;
 }
 .delete-button:hover {
   color: red;
@@ -65,11 +65,133 @@ hr {
 }
 
 .li-task-container{
-  width: 450px;
+  width: 400px;
   overflow: hidden;
   margin-left: -40px;
 
 }
 ul{
   margin:0;
+}
+
+.edit-button, .add-button {
+  border: none;
+  width: 50px;
+  color: gray;
+  background-color: white;
+  margin-right: -25px;
+}
+.edit-button:hover , .add-button:hover{
+  color: red;
+  background-color: white;
+  font-size: larger;
+  font-weight: 700;
+}
+
+.input-add-container{
+  display: flex;
+}
+
+
+
+
+/* Media Queries */
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 350px;
+    margin: 0 auto;
+    padding-top: 20px;
+  
+    background-color: white;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"] {
+    width: 96%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .task {
+    margin-bottom: 10px;
+  }
+  
+  .delete-button {
+    border: none;
+    width: 50px;
+    color: gray;
+    background-color: white;
+    margin-right: 0px;
+  }
+  .delete-button:hover {
+    color: red;
+    background-color: white;
+    font-size: larger;
+    font-weight: 700;
+  }
+  .task-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+  
+  hr {
+    border: none;
+  }
+  
+  .li-task-container{
+    width: 290px;
+    overflow: hidden;
+    margin-left: -40px;
+  
+  }
+  ul{
+    margin:0;
+  }
+  
+  .edit-button, .add-button {
+    border: none;
+    width: 50px;
+    color: gray;
+    background-color: white;
+    margin-right: -25px;
+  }
+  .edit-button:hover , .add-button:hover{
+    color: red;
+    background-color: white;
+    font-size: larger;
+    font-weight: 700;
+  }
+  
+  .input-add-container{
+    display: flex;
+  }
+  
+  
+  
 }

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import uniqid from "uniqid";
 import Overview from "./Components/Overview";
 import "./Styles/Components.css";
+import { FaPlusCircle } from "react-icons/fa";
+import Footer from "./Components/Footer";
 
 class App extends Component {
   constructor() {
@@ -49,24 +51,47 @@ class App extends Component {
       tasks: this.state.tasks.filter((task) => task.id !== taskId),
     });
   };
+  editTask = (taskId, updatedText) => {
+    const updatedTasks = this.state.tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, text: updatedText };
+      }
+      return task;
+    });
+  
+    this.setState({
+      tasks: updatedTasks,
+    });
+  };
+  
   render() {
     const { task, tasks } = this.state;
 
     return (
       <div className="container">
         <form onSubmit={this.onSubmitTask}>
-          <label htmlFor="taskInput">Enter task</label>
+          <label htmlFor="taskInput"></label>
+          <div className="input-add-container">
           <input
             maxLength={35}
             type="text"
             id="taskInput"
             value={task.text}
+            placeholder="Enter a Task"
             onChange={this.handleChange}
           />
           <hr />
-          <button>Add Task</button>
+          <button  
+            className="add-button">
+            < FaPlusCircle />
+            </button>
+          </div>
         </form>
-        <Overview tasks={tasks} deleteTask={this.deleteTask} />
+        <Overview 
+          tasks={tasks} 
+          deleteTask={this.deleteTask}
+          editTask={this.editTask} />
+          <Footer />
       </div>
     );
   }

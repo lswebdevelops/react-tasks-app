@@ -3,7 +3,7 @@
 
 https://lswebdevelops.github.io/react-tasks-app/
 
-![Website](https://github.com/lswebdevelops/react-tasks-app/src/images/task-app.png)
+![Website](https://github.com/lswebdevelops/react-tasks-app/blob/master/src/images/task-app.png)
 
 
 

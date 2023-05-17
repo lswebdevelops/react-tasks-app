@@ -96,7 +96,7 @@ class App extends Component {
           <label htmlFor="taskInput"></label>
           <div className="input-add-container">
             <input
-              maxLength={35}
+              maxLength={120}
               type="text"
               id="taskInput"
               value={task.text}

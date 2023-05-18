@@ -1,119 +1,80 @@
-import React, { Component } from "react";
-import uniqid from "uniqid";
-import Overview from "./Components/Overview";
-import "./Styles/Components.css";
-import { FaPlusCircle } from "react-icons/fa";
-import Footer from "./Components/Footer";
+import React, {Component } from "react";
+import uniqid from 'uniqid';
+import './Styles/Components.css';
+import Overview  from "./Components/Overview";
+
 
 class App extends Component {
-  constructor() {
+  constructor(){
     super();
-
-    const tasksFromStorage = localStorage.getItem("tasks");
-    const initialTasks = tasksFromStorage ? JSON.parse(tasksFromStorage) : [];
-
     this.state = {
       task: {
         text: "",
         id: uniqid(),
-      },
-      tasks: initialTasks,
-    };
+        },
+        tasks: []
+    }
   }
 
-  componentDidUpdate() {
-    const { tasks } = this.state;
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }
-
-  handleChange = (e) => {
-    this.setState({
-      task: {
+  handleChanges = (e) => {
+      this.setState=({
+       task: {
         text: e.target.value,
         id: this.state.task.id,
       },
     });
   };
 
+
+
+
   onSubmitTask = (e) => {
     e.preventDefault();
-    if (this.state.task.text.trim() === "") {
+    // avoiding empty tasks:
+    if(this.state.task.text.trim() === ""){
       return;
     }
-    const newTask = {
-      text: this.state.task.text,
-      id: uniqid(),
-    };
-    this.setState(
-      (prevState) => ({
-        tasks: [...prevState.tasks, newTask],
-        task: {
-          text: "",
-          id: uniqid(),
-        },
-      }),
-      () => {
-        localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
-      }
-    );
-  };
-
-  deleteTask = (taskId) => {
-    this.setState(
-      (prevState) => ({
-        tasks: prevState.tasks.filter((task) => task.id !== taskId),
-      }),
-      () => {
-        localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
-      }
-    );
-  };
-
-  editTask = (taskId, updatedText) => {
-    const updatedTasks = this.state.tasks.map((task) => {
-      if (task.id === taskId) {
-        return { ...task, text: updatedText };
-      }
-      return task;
+    // end of avoiding empty tasks
+    this.setState({
+      tasks: this.state.tasks.concat(this.state.task),
+      task: { text: "",
+      id: uniqid()
+  },
     });
-
-    this.setState(
-      {
-        tasks: updatedTasks,
-      },
-      () => {
-        localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
-      }
-    );
   };
+
+
+  
+  
+
 
   render() {
-    const { task, tasks } = this.state;
+    const {task, tasks }  = this.state;
 
-    return (
-      <div className="container">
-        <form onSubmit={this.onSubmitTask}>
-          <label htmlFor="taskInput"></label>
-          <div className="input-add-container">
-            <input
-              maxLength={120}
-              type="text"
-              id="taskInput"
-              value={task.text}
-              placeholder="Enter a Task"
-              onChange={this.handleChange}
-            />
-            <hr />
-            <button className="add-button">
-              <FaPlusCircle />
-            </button>
-          </div>
-        </form>
-        <Overview tasks={tasks} deleteTask={this.deleteTask} editTask={this.editTask} />
-        <Footer />
-      </div>
-    );
-  }
+    return(
+     <div>
+       <form onSubmit={this.onSubmitTask}>
+         <label htmlFor="taskInput"></label>
+         <input 
+           type="text" 
+           id="taskInput"
+           onChange={this.handleChanges}
+           value={task.text}
+           placeholder="Enter Task"
+           />
+         <button type="submit">
+           Add Task
+         </button>
+       </form>
+       <Overview
+         tasks={tasks}
+         />
+     </div>
+    )
+ }
+
 }
 
 export default App;
+
+

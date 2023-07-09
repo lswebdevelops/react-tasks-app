@@ -1,80 +1,107 @@
-import React, {Component } from "react";
-import uniqid from 'uniqid';
-import './Styles/Components.css';
-import Overview  from "./Components/Overview";
-
+// App.js
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import uniqid from "uniqid";
+import Overview from "./Components/Overview";
+import Cart from "./Components/Cart";
+import "./Styles/Components.css";
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
+    const tasksFromStorage = localStorage.getItem("tasks");
+    const initialTasks = tasksFromStorage ? JSON.parse(tasksFromStorage) : [];
     this.state = {
       task: {
         text: "",
         id: uniqid(),
-        },
-        tasks: []
-    }
+      },
+      tasks: initialTasks,
+      cartItems: [], // Initialize an empty array for cart items
+    };
   }
 
-  handleChanges = (e) => {
-      this.setState=({
-       task: {
-        text: e.target.value,
-        id: this.state.task.id,
-      },
-    });
-  };
-
-
-
+  componentDidUpdate() {
+    const { tasks } = this.state;
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
 
   onSubmitTask = (e) => {
     e.preventDefault();
-    // avoiding empty tasks:
-    if(this.state.task.text.trim() === ""){
+    if (this.state.task.text.trim() === "") {
       return;
     }
-    // end of avoiding empty tasks
-    this.setState({
-      tasks: this.state.tasks.concat(this.state.task),
-      task: { text: "",
-      id: uniqid()
-  },
-    });
+    const newTask = {
+      text: this.state.task.text,
+      id: uniqid(),
+    };
+    this.setState(
+      (prevState) => ({
+        tasks: [...prevState.tasks, newTask],
+        task: {
+          text: "",
+          id: uniqid(),
+        },
+      }),
+      () => {
+        localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
+      }
+    );
   };
 
+  // Function to add an item to the cart
+  addToCart = (item) => {
+    const { cartItems } = this.state;
+    const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
 
-  
-  
+    if (existingItem) {
+      const updatedCartItems = cartItems.map((cartItem) => {
+        if (cartItem.id === item.id) {
+          return {
+            ...cartItem,
+            price2023: cartItem.price2023 * 2,
+          };
+        }
+        return cartItem;
+      });
 
+      this.setState({
+        cartItems: updatedCartItems,
+      });
+    } else {
+      this.setState((prevState) => ({
+        cartItems: [...prevState.cartItems, item],
+      }));
+    }
+  };
 
   render() {
-    const {task, tasks }  = this.state;
+    const { task, tasks, cartItems } = this.state;
+    return (
+      <Router>
+        <div className="container">
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Overview</Link>
+              </li>
+              <li>
+                <Link to="/cart">Cart</Link>
+              </li>
+            </ul>
+          </nav>
 
-    return(
-     <div>
-       <form onSubmit={this.onSubmitTask}>
-         <label htmlFor="taskInput"></label>
-         <input 
-           type="text" 
-           id="taskInput"
-           onChange={this.handleChanges}
-           value={task.text}
-           placeholder="Enter Task"
-           />
-         <button type="submit">
-           Add Task
-         </button>
-       </form>
-       <Overview
-         tasks={tasks}
-         />
-     </div>
-    )
- }
-
+          <Routes>
+            <Route
+              path="/"
+              element={<Overview tasks={tasks} addToCart={this.addToCart} />}
+            />
+            <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+          </Routes>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
-
-

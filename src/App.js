@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Routes, Link ,useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import uniqid from "uniqid";
 import Overview from "./Components/Overview";
 import Cart from "./Components/Cart";
@@ -7,7 +7,6 @@ import "./Styles/Components.css";
 import { FaCartArrowDown } from "react-icons/fa6";
 import Payment from "./Components/Payment";
 import Portfolio from "./Components/Portfolio";
-
 class App extends Component {
   constructor() {
     super();
@@ -23,12 +22,10 @@ class App extends Component {
       cartItems: [], // Initialize an empty array for cart items
     };
   }
-
   componentDidUpdate() {
     const { tasks } = this.state;
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }
-
   onSubmitTask = (e) => {
     e.preventDefault();
     if (this.state.task.text.trim() === "") {
@@ -51,12 +48,16 @@ class App extends Component {
       }
     );
   };
-
+  resetCartCount = () => {
+    this.setState({
+      cartCount: 0,
+      cartItems: [],
+    });
+  };
   // Function to add an item to the cart
   addToCart = (item) => {
     const { cartItems } = this.state;
     const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
-
     if (existingItem) {
       const updatedCartItems = cartItems.map((cartItem) => {
         if (cartItem.id === item.id) {
@@ -67,7 +68,6 @@ class App extends Component {
         }
         return cartItem;
       });
-
       this.setState({
         cartItems: updatedCartItems,
       });
@@ -76,30 +76,12 @@ class App extends Component {
         cartItems: [...prevState.cartItems, item],
       }));
     }
-
     this.setState((prevState) => ({
       cartCount: prevState.cartCount + 1, // Increment cartCount by 1
     }));
   };
-
-  resetCartCount = () => {
-    const { cartItems } = this.state;
-    this.setState(
-      {
-        cartCount: 0,
-        cartItems: [],
-      },
-      () => {
-        const searchParams = new URLSearchParams();
-        searchParams.append("cartItems", JSON.stringify(cartItems));
-        window.location.href = `/portfolio?${searchParams.toString()}`;
-      }
-    );
-  };
-
   render() {
     const { task, tasks, cartItems, cartCount } = this.state;
-
     return (
       <Router>
         <div className="container">
@@ -119,7 +101,6 @@ class App extends Component {
               </li>
             </ul>
           </nav>
-
           <Routes>
             <Route
               path="/"
@@ -135,15 +116,12 @@ class App extends Component {
               }
             />
             <Route path="/payment" element={<Payment />} />
-            <Route
-              path="/portfolio"
-              element={<Portfolio cartItems={cartItems} />}
-            />
+            <Route path="/portfolio" element={<Portfolio />} />
+
           </Routes>
         </div>
       </Router>
     );
   }
 }
-
 export default App;

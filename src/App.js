@@ -17,6 +17,7 @@ class App extends Component {
         id: uniqid(),
       },
       tasks: initialTasks,
+      cartCount: 0,
       cartItems: [], // Initialize an empty array for cart items
     };
   }
@@ -53,7 +54,7 @@ class App extends Component {
   addToCart = (item) => {
     const { cartItems } = this.state;
     const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
-
+  
     if (existingItem) {
       const updatedCartItems = cartItems.map((cartItem) => {
         if (cartItem.id === item.id) {
@@ -64,7 +65,7 @@ class App extends Component {
         }
         return cartItem;
       });
-
+  
       this.setState({
         cartItems: updatedCartItems,
       });
@@ -73,7 +74,12 @@ class App extends Component {
         cartItems: [...prevState.cartItems, item],
       }));
     }
+  
+    this.setState((prevState) => ({
+      cartCount: prevState.cartCount + 1, // Increment cartCount by 1
+    }));
   };
+  
 
   render() {
     const { task, tasks, cartItems } = this.state;
@@ -83,14 +89,10 @@ class App extends Component {
           <nav>
             <ul>
               <li>
-                <Link 
-                  className="link-overview"
-                  to="/">Overview</Link>
+                <Link to="/">Overview</Link>
               </li>
               <li>
-                <Link 
-                  className="link-overview"
-                  to="/cart">Cart</Link>
+                <Link to="/cart">Cart ({this.state.cartCount})</Link>
               </li>
             </ul>
           </nav>

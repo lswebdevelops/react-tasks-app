@@ -5,7 +5,7 @@ const Overview = (props) => {
 
   return (
     <div>
-      <h1>Stock Available:</h1>
+      <h1>Stock</h1>
       <table>
         <thead>
           <tr>

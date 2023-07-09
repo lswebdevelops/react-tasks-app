@@ -1,12 +1,13 @@
-// App.js
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import uniqid from "uniqid";
+
 import Overview from "./Components/Overview";
 import Cart from "./Components/Cart";
 import "./Styles/Components.css";
 import { FaCartArrowDown } from "react-icons/fa6";
-import Payment from './Components/Payment'
+import Payment from "./Components/Payment";
+import { useNavigate } from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -23,6 +24,7 @@ class App extends Component {
       cartItems: [], // Initialize an empty array for cart items
     };
   }
+ 
 
   componentDidUpdate() {
     const { tasks } = this.state;
@@ -51,12 +53,17 @@ class App extends Component {
       }
     );
   };
-
+  resetCartCount = () => {
+    this.setState({
+      cartCount: 0,
+      cartItems: [],
+    });
+  }
   // Function to add an item to the cart
   addToCart = (item) => {
     const { cartItems } = this.state;
     const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
-  
+
     if (existingItem) {
       const updatedCartItems = cartItems.map((cartItem) => {
         if (cartItem.id === item.id) {
@@ -67,7 +74,7 @@ class App extends Component {
         }
         return cartItem;
       });
-  
+
       this.setState({
         cartItems: updatedCartItems,
       });
@@ -76,15 +83,15 @@ class App extends Component {
         cartItems: [...prevState.cartItems, item],
       }));
     }
-  
+
     this.setState((prevState) => ({
       cartCount: prevState.cartCount + 1, // Increment cartCount by 1
     }));
   };
-  
 
   render() {
-    const { task, tasks, cartItems } = this.state;
+    const { task, tasks, cartItems, cartCount } = this.state;
+
     return (
       <Router>
         <div className="container">
@@ -94,7 +101,10 @@ class App extends Component {
                 <Link to="/">Stocks</Link>
               </li>
               <li className="li-span-cart">
-                <Link to="/cart"><FaCartArrowDown /> <p className="span_number">{this.state.cartCount}</p></Link>
+                <Link to="/cart">
+                  <FaCartArrowDown />
+                  {cartCount > 0 && <p className="span_number">{cartCount}</p>}
+                </Link>
               </li>
             </ul>
           </nav>
@@ -104,8 +114,15 @@ class App extends Component {
               path="/"
               element={<Overview tasks={tasks} addToCart={this.addToCart} />}
             />
-            <Route path="/cart" element={<Cart cartItems={cartItems} />} />
-            <Route path="/payment" element={<Payment />} />
+           <Route
+  path="/cart"
+  element={<Cart cartItems={cartItems} resetCartCount={this.resetCartCount} />}
+/>
+
+            <Route
+              path="/payment"
+              element={<Payment />}
+            />
           </Routes>
         </div>
       </Router>

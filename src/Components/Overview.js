@@ -1,8 +1,7 @@
+
 import "../Styles/Components.css";
 import stocksData from "../stocksData";
-
 const Overview = (props) => {
-
   return (
     <div>
       <h1>Stock</h1>
@@ -11,7 +10,7 @@ const Overview = (props) => {
           <tr>
             <th>Ticker</th>
             <th>Name</th>
-            <th>Last Price</th>
+            <th>Price 2023</th>
             <th>Size</th>
             <th>Buy</th>
           </tr>

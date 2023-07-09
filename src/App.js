@@ -5,6 +5,7 @@ import uniqid from "uniqid";
 import Overview from "./Components/Overview";
 import Cart from "./Components/Cart";
 import "./Styles/Components.css";
+import { FaCartArrowDown } from "react-icons/fa6";
 
 class App extends Component {
   constructor() {
@@ -86,13 +87,13 @@ class App extends Component {
     return (
       <Router>
         <div className="container">
-          <nav>
-            <ul>
+          <nav className="nav-menu">
+            <ul className="ul-menu">
               <li>
-                <Link to="/">Overview</Link>
+                <Link to="/">Stocks</Link>
               </li>
               <li>
-                <Link to="/cart">Cart ({this.state.cartCount})</Link>
+                <Link to="/cart"><FaCartArrowDown /> {this.state.cartCount}</Link>
               </li>
             </ul>
           </nav>

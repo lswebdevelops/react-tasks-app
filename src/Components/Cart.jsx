@@ -1,5 +1,7 @@
 import React from "react";
 import "../Styles/Components.css";
+import { Link } from "react-router-dom";
+import { FaMoneyCheckAlt } from "react-icons/fa";
 
 const Cart = (props) => {
   const { cartItems } = props;
@@ -52,6 +54,10 @@ const Cart = (props) => {
         <span>TOTAL:</span>
         <span>${formatNumber(totalPrice.toFixed(2))}</span>
       </div>
+      <Link
+        className="link-payment"
+        to={"/payment"}
+        > <FaMoneyCheckAlt />&nbsp; Go to Payment</Link>
     </div>
   );
 };

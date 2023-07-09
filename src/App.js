@@ -6,6 +6,7 @@ import Overview from "./Components/Overview";
 import Cart from "./Components/Cart";
 import "./Styles/Components.css";
 import { FaCartArrowDown } from "react-icons/fa6";
+import Payment from './Components/Payment'
 
 class App extends Component {
   constructor() {
@@ -92,8 +93,8 @@ class App extends Component {
               <li>
                 <Link to="/">Stocks</Link>
               </li>
-              <li>
-                <Link to="/cart"><FaCartArrowDown /> {this.state.cartCount}</Link>
+              <li className="li-span-cart">
+                <Link to="/cart"><FaCartArrowDown /> <p className="span_number">{this.state.cartCount}</p></Link>
               </li>
             </ul>
           </nav>
@@ -104,6 +105,7 @@ class App extends Component {
               element={<Overview tasks={tasks} addToCart={this.addToCart} />}
             />
             <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+            <Route path="/payment" element={<Payment />} />
           </Routes>
         </div>
       </Router>

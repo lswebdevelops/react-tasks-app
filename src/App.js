@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link ,useHistory } from "react-router-dom";
 import uniqid from "uniqid";
 import Overview from "./Components/Overview";
 import Cart from "./Components/Cart";
@@ -7,6 +7,10 @@ import "./Styles/Components.css";
 import { FaCartArrowDown } from "react-icons/fa6";
 import Payment from "./Components/Payment";
 import Portfolio from "./Components/Portfolio";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 02d243fd6276c0404ad2b6f16f66b57e4cf0b029
 class App extends Component {
   constructor() {
     super();
@@ -22,6 +26,10 @@ class App extends Component {
       cartItems: [], // Initialize an empty array for cart items
     };
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 02d243fd6276c0404ad2b6f16f66b57e4cf0b029
   componentDidUpdate() {
     const { tasks } = this.state;
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -47,12 +55,6 @@ class App extends Component {
         localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
       }
     );
-  };
-  resetCartCount = () => {
-    this.setState({
-      cartCount: 0,
-      cartItems: [],
-    });
   };
   // Function to add an item to the cart
   addToCart = (item) => {
@@ -80,6 +82,7 @@ class App extends Component {
       cartCount: prevState.cartCount + 1, // Increment cartCount by 1
     }));
   };
+
   render() {
     const { task, tasks, cartItems, cartCount } = this.state;
     return (
@@ -114,6 +117,7 @@ class App extends Component {
                   resetCartCount={this.resetCartCount}
                 />
               }
+
             />
             <Route path="/payment" element={<Payment />} />
             <Route path="/portfolio" element={<Portfolio />} />

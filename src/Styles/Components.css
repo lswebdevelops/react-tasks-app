@@ -1,211 +1,63 @@
-*{
-  background-color: white
-}
+/* Components.css */
 .container {
-  max-width: 360px;
+  width: 80%;
   margin: 0 auto;
-  padding: 10px;
-  padding-top: 20px;
+  padding: 20px;
 }
 
-form {
+h1 {
+  font-size: 24px;
   margin-bottom: 20px;
 }
 
-label {
-  display: block;
-  margin-bottom: 10px;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-input[type="text"] {
-  width: 96%;
-  padding: 10px;
-  font-size: 16px;
+table th,
+table td {
   border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 8px;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.total-price {
+  text-align: right;
+  margin-top: 20px;
 }
 
-button:hover {
-  background-color: #0056b3;
+body {
+  background-color: #f0f0f0;
 }
 
-.task {
-  margin-bottom: 10px;
-}
-
-.delete-button {
-  border: none;
-  width: 50px;
-  color: gray;
-  background-color: white;
-  margin-right: 0px;
-}
-.delete-button:hover {
-  color: red;
-  background-color: white;
-  font-size: larger;
-  font-weight: 700;
-}
-.task-container {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-}
-
-hr {
-  border: none;
-}
-
-.li-task-container{
-  width: 400px;
-  overflow: hidden;
-  margin-left: -40px;
-
-}
-
-ul{
-  margin:0;
-}
-
-.edit-button, .add-button {
-  border: none;
-  width: 50px;
-  color: gray;
-  background-color: white;
-  margin-right: -25px;
-}
-.edit-button:hover , .add-button:hover{
-  color: blue;
-  background-color: white;
-  font-size: larger;
-  font-weight: 700;
-}
-.add-button:hover{
-  color: green;
-  background-color: white;
-  font-size: larger;
-  font-weight: 700;
-}
-
-.input-add-container{
+.nav-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #f0f0f0;
   display: flex;
 }
 
+.nav-menu li {
+  margin-right: 10px;
+  
+}
 
 
-/* Media Queries */
+li {
+  list-style: none;
+}
 
-@media (max-width: 600px) {
-  .container {
-    max-width: 350px;
-    margin: 0 auto;
-    padding-top: 20px;
-  
-    background-color: white;
-  }
-  
-  form {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  input[type="text"] {
-    width: 90%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .task {
-    margin-bottom: 10px;
-  }
-  
-  .delete-button {
-    border: none;
-    width: 50px;
-    color: gray;
-    background-color: white;
-    margin-right: 0px;
-  }
-  .delete-button:hover {
-    color: red;
-    background-color: white;
-    font-size: larger;
-    font-weight: 700;
-  }
-  .task-container {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-  }
-  
-  hr {
-    border: none;
-  }
-  
-  .li-task-container{
-    width: 290px;
-    overflow: hidden;
-    margin-left: -40px;
-  
-  }
-  ul{
-    margin:0;
-  }
-  
-  .edit-button, .add-button {
-    border: none;
-    width: 50px;
-    color: gray;
-    background-color: white;
-    margin-right: -25px;
-  }
-  .edit-button:hover , .add-button:hover{
-    color: blue;
-    background-color: white;
-    font-size: larger;
-    font-weight: 700;
-  }
-  .add-button:hover{
-    color: green;
-    background-color: white;
-    font-size: larger;
-    font-weight: 700;
-  }
-  
-  .input-add-container{
-    display: flex;
-  }
-  
-  
-  
+.link-overview {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #f0f0f0;
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.link-overview:hover {
+  background-color: #ccc;
 }

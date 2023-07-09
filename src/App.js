@@ -83,10 +83,14 @@ class App extends Component {
           <nav>
             <ul>
               <li>
-                <Link to="/">Overview</Link>
+                <Link 
+                  className="link-overview"
+                  to="/">Overview</Link>
               </li>
               <li>
-                <Link to="/cart">Cart</Link>
+                <Link 
+                  className="link-overview"
+                  to="/cart">Cart</Link>
               </li>
             </ul>
           </nav>

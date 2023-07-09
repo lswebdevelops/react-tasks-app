@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link ,useHistory } from "react-router-dom";
 import uniqid from "uniqid";
-
 import Overview from "./Components/Overview";
 import Cart from "./Components/Cart";
 import "./Styles/Components.css";
 import { FaCartArrowDown } from "react-icons/fa6";
 import Payment from "./Components/Payment";
-import { useNavigate } from "react-router-dom";
+import Portfolio from "./Components/Portfolio";
 
 class App extends Component {
   constructor() {
@@ -24,7 +23,6 @@ class App extends Component {
       cartItems: [], // Initialize an empty array for cart items
     };
   }
- 
 
   componentDidUpdate() {
     const { tasks } = this.state;
@@ -53,12 +51,7 @@ class App extends Component {
       }
     );
   };
-  resetCartCount = () => {
-    this.setState({
-      cartCount: 0,
-      cartItems: [],
-    });
-  }
+
   // Function to add an item to the cart
   addToCart = (item) => {
     const { cartItems } = this.state;
@@ -89,6 +82,21 @@ class App extends Component {
     }));
   };
 
+  resetCartCount = () => {
+    const { cartItems } = this.state;
+    this.setState(
+      {
+        cartCount: 0,
+        cartItems: [],
+      },
+      () => {
+        const searchParams = new URLSearchParams();
+        searchParams.append("cartItems", JSON.stringify(cartItems));
+        window.location.href = `/portfolio?${searchParams.toString()}`;
+      }
+    );
+  };
+
   render() {
     const { task, tasks, cartItems, cartCount } = this.state;
 
@@ -99,6 +107,9 @@ class App extends Component {
             <ul className="ul-menu">
               <li>
                 <Link to="/">Stocks</Link>
+              </li>
+              <li>
+                <Link to="/portfolio">Portfolio</Link>
               </li>
               <li className="li-span-cart">
                 <Link to="/cart">
@@ -114,14 +125,19 @@ class App extends Component {
               path="/"
               element={<Overview tasks={tasks} addToCart={this.addToCart} />}
             />
-           <Route
-  path="/cart"
-  element={<Cart cartItems={cartItems} resetCartCount={this.resetCartCount} />}
-/>
-
             <Route
-              path="/payment"
-              element={<Payment />}
+              path="/cart"
+              element={
+                <Cart
+                  cartItems={cartItems}
+                  resetCartCount={this.resetCartCount}
+                />
+              }
+            />
+            <Route path="/payment" element={<Payment />} />
+            <Route
+              path="/portfolio"
+              element={<Portfolio cartItems={cartItems} />}
             />
           </Routes>
         </div>

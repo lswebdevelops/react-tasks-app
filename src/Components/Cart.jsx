@@ -32,7 +32,7 @@ const Cart = (props) => {
             <th>ID</th>
             <th>Ticker</th>
             <th>Name</th>
-            <th>Price 2023</th>
+            <th>Subtotal</th>
             <th>Size</th>
           </tr>
         </thead>
@@ -57,7 +57,7 @@ const Cart = (props) => {
       </div>
       <Link className="link-payment" to="/payment" onClick={props.resetCartCount}>
   <FaMoneyCheckAlt />
-  &nbsp; Go to Payment
+  &nbsp; Pay and add items to your Portfolio
 </Link>
 
     </div>

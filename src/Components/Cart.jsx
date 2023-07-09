@@ -1,11 +1,10 @@
-
 // Cart.js
 import React from "react";
 import "../Styles/Components.css";
 import { Link } from "react-router-dom";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 const Cart = (props) => {
-  const { cartItems, cartCount } = props;
+  const { cartItems } = props;
   // Calculate the total price
   const totalPrice = cartItems.reduce((total, item) => {
     return total + item.price2023;
@@ -25,18 +24,18 @@ const Cart = (props) => {
       <table>
         <thead>
           <tr>
-            <th>ID</th>
+            <th className="id-cart-to-invisible">ID</th>
             <th>Ticker</th>
             <th>Name</th>
-            <th>Price 2023</th>
-            <th>Size</th>
+            <th>Subtotal</th>
+            <th>Market Cap</th>
           </tr>
         </thead>
         <tbody>
           {cartItems.map((item, index) => {
             return (
               <tr key={index}>
-                <td>{item.id}</td>
+                <td className="id-cart-to-invisible" >{item.id}</td>
                 <td>{item.ticker}</td>
                 <td>{item.name}</td>
                 <td>${formatNumber(item.price2023)}</td>
@@ -47,13 +46,17 @@ const Cart = (props) => {
         </tbody>
       </table>
       <div className="total-price">
-        <span>TOTAL:</span>
+        <span>TOTAL: &nbsp;</span>
         <span>${formatNumber(totalPrice)}</span>
       </div>
-      <Link className="link-payment" to="/payment" onClick={props.resetCartCount}>
-  <FaMoneyCheckAlt />
-  &nbsp; Go to Payment
-</Link>
+      <Link
+        className="link-payment"
+        to="/payment"
+        onClick={props.resetCartCount}
+      >
+        <FaMoneyCheckAlt />
+        &nbsp; Pay and add items to Portfolio
+      </Link>
     </div>
   );
 };

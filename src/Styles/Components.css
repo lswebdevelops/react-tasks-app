@@ -32,7 +32,7 @@ body {
 }
 
 .nav-menu {
-  padding: 0;
+  padding: 1px 1px 1px 1px;
   margin: 0;
 
   border-radius: 5px;
@@ -45,14 +45,52 @@ body {
 .nav-menu li {
   width: 25%;
   height: 34px;
-
   text-align: center;
   margin-right: 10px;
   padding: 4px;
-  font-size: large;
+  font-size: 1.5rem;
 }
 .nav-menu li:hover {
   font-size: larger;
+}
+.div-span-cart {
+  display: flex;
+  gap: 45px;
+  padding: 0 15px 0 15px;
+
+  align-items: center; /* Optional, for vertical alignment */
+  justify-content: space-between;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Optional, remove underline from the link */
+}
+
+.cart-content {
+  display: flex;
+  align-items: center;
+}
+
+.cart-icon {
+  margin-right: 5px; /* Optional, adjust spacing */
+  font-size: 1.5rem;
+}
+
+.cart-icon:hover {
+  font-size: 1.8rem;
+}
+.span_number {
+  margin-left: 5px; /* Optional, adjust spacing */
+  background-color: green;
+  width: 30px;
+  color: white;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 li {
@@ -63,42 +101,46 @@ a {
   text-decoration: none;
   color: black;
 }
-.li-span-cart {
-  display: flex;
-}
-.span_number {
-  font-size: 10px;
-  position: absolute;
-  top: 22px;
-  right: 80px;
-  background-color: green;
-  color: white;
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  margin: 0;
-  padding: 0px;
-}
-.link-payment {
 
+.link-payment {
   margin: 45px auto;
   display: flex;
   justify-content: center;
   font-size: larger;
   font-weight: 700;
   align-items: center;
-
+  width: auto;
   height: 50px;
- 
-  ;
 }
 .link-payment:hover {
   text-decoration: underline;
   background-color: rgb(200, 200, 200);
   border-radius: 5px;
-  width: 250px;
+  width: auto;
+}
 
-
- 
-  ;
+.id-cart-to-invisible {
+  display: none;
+}
+.buy-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  width: 100%;
+  height: 100%;
+  font-size: large;
+  padding: 0;
+  margin: 0;
+}
+.buy-button-td {
+  padding: 0;
+  margin: 0;
+  border-spacing: 0;
+}
+.buy-button:hover {
+  background-color: green;
+  color: white;
+  width: 100%;
+  height: 155%;
 }

@@ -1,13 +1,13 @@
-
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import uniqid from "uniqid";
-import Overview from "./Components/Overview";
+import Overview from "./Components/Stock";
 import Cart from "./Components/Cart";
 import "./Styles/Components.css";
 import { FaCartArrowDown } from "react-icons/fa6";
 import Payment from "./Components/Payment";
-import { useNavigate } from "react-router-dom";
+import Portfolio from "./Components/Portfolio";
+
 class App extends Component {
   constructor() {
     super();
@@ -54,8 +54,8 @@ class App extends Component {
       cartCount: 0,
       cartItems: [],
     });
-  }
-  // Function to add an item to the cart
+  };
+
   addToCart = (item) => {
     const { cartItems } = this.state;
     const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
@@ -82,7 +82,7 @@ class App extends Component {
     }));
   };
   render() {
-    const { task, tasks, cartItems, cartCount } = this.state;
+    const { tasks, cartItems, cartCount } = this.state;
     return (
       <Router>
         <div className="container">
@@ -91,12 +91,19 @@ class App extends Component {
               <li>
                 <Link to="/">Stocks</Link>
               </li>
-              <li className="li-span-cart">
-                <Link to="/cart">
-                  <FaCartArrowDown />
-                  {cartCount > 0 && <p className="span_number">{cartCount}</p>}
-                </Link>
+              <li>
+                <Link to="/portfolio">Portfolio</Link>
               </li>
+              <div className="div-span-cart">
+                <Link to="/cart" className="cart-link">
+                  <div className="cart-content">
+                    <FaCartArrowDown className="cart-icon" />
+                    {cartCount > 0 && (
+                      <span className="span_number">{cartCount}</span>
+                    )}
+                  </div>
+                </Link>
+              </div>
             </ul>
           </nav>
           <Routes>
@@ -104,14 +111,17 @@ class App extends Component {
               path="/"
               element={<Overview tasks={tasks} addToCart={this.addToCart} />}
             />
-           <Route
-  path="/cart"
-  element={<Cart cartItems={cartItems} resetCartCount={this.resetCartCount} />}
-/>
             <Route
-              path="/payment"
-              element={<Payment />}
+              path="/cart"
+              element={
+                <Cart
+                  cartItems={cartItems}
+                  resetCartCount={this.resetCartCount}
+                />
+              }
             />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/portfolio" element={<Portfolio />} />
           </Routes>
         </div>
       </Router>

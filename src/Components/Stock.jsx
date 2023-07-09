@@ -9,10 +9,10 @@ const Overview = (props) => {
         <thead>
           <tr>
             <th>Ticker</th>
-            <th>Name</th>
-            <th>Price 2023</th>
-            <th>Size</th>
-            <th>Buy</th>
+            <th>Company Name</th>
+            <th>Last Price</th>
+            <th>Market Cap</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -23,8 +23,10 @@ const Overview = (props) => {
                 <td>{stock.name}</td>
                 <td>{stock.price2023}</td>
                 <td>{stock.size}</td>
-                <td>
-                  <button onClick={() => props.addToCart(stock)}>buy</button>
+                <td className="buy-button-td">
+                  <button 
+                    className="buy-button"
+                    onClick={() => props.addToCart(stock)}>Add to Cart</button>
                 </td>
               </tr>
             );
